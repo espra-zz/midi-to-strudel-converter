@@ -1,0 +1,107 @@
+# One-pager: MIDI to Strudel Code Converter
+
+## 1. TL;DR
+A web-based tool that converts MIDI files into executable Strudel code, enabling music managers, marketers, and creative professionals to seamlessly bridge the gap between traditional music production and live coding. This converter democratizes algorithmic music creation by transforming familiar MIDI compositions into programmable, interactive musical experiences that can be easily integrated into creative projects, marketing campaigns, and educational content.
+
+## 2. Goals
+
+### Business Goals
+* Create a new market segment at the intersection of music technology and creative coding
+* Establish a pipeline for converting traditional music assets into interactive, programmable formats
+* Generate revenue through freemium model targeting creative agencies, music labels, and educational institutions
+* Build a community of music-code hybrid creators and expand the Strudel ecosystem
+
+### User Goals
+* Convert existing MIDI compositions into live-codeable formats without learning complex programming
+* Create interactive music experiences for marketing campaigns and brand activations
+* Develop educational content that teaches both music theory and programming concepts
+* Collaborate across disciplines by providing a common language between musicians and developers
+
+### Non-Goals
+* Direct audio-to-MIDI conversion or complex audio processing
+* Full-featured DAW replacement or comprehensive music production suite
+* Real-time MIDI performance or hardware controller integration
+* Advanced music theory analysis or composition assistance
+
+## 3. User stories
+
+**Sarah, Creative Marketing Manager**: "I need to create an interactive web experience for our music festival campaign. I have MIDI files from our featured artists, but I need them in a format that developers can easily manipulate and embed into our interactive website."
+
+**Marcus, Music Educator**: "I want to teach my students how music and code intersect. If I can convert their MIDI compositions into Strudel code, they can see how their musical ideas translate into algorithmic thinking and modify them programmatically."
+
+**Alex, Content Creator**: "I produce viral social media content and want to create unique, interactive music experiences that viewers can manipulate. Converting my MIDI sketches to Strudel would let me build engaging, shareable musical interactions."
+
+## 4. Functional requirements
+
+### Core Features (Phase 1)
+* MIDI file upload and parsing (supports common formats: .mid, .midi)
+* Automatic conversion to valid Strudel syntax with pattern recognition
+* Real-time preview of generated Strudel code with audio playback
+* One-click copy/export functionality for generated code
+* Basic tempo, key, and instrument mapping preservation
+
+### Enhanced Features (Phase 2)
+* Batch processing for multiple MIDI files
+* Customizable conversion parameters (quantization, pattern length, swing)
+* Integration with popular Strudel hosting platforms
+* Collaboration features for sharing and remixing converted code
+* Template library for common musical patterns and structures
+
+### Advanced Features (Phase 3)
+* API access for developers and third-party integrations
+* Advanced pattern recognition and intelligent code optimization
+* Custom sample library integration and mapping
+* Version control and project management for converted files
+
+## 5. User experience
+
+### Primary User Journey
+* User lands on converter interface and uploads MIDI file via drag-and-drop or file browser
+* System processes file and displays conversion progress with estimated completion time
+* Generated Strudel code appears in split-screen view alongside original MIDI visualization
+* User can preview audio output, adjust conversion parameters, and iterate on results
+* Final code can be copied to clipboard, downloaded as file, or shared via unique link
+
+### Edge Cases and UI Notes
+* Handle corrupted or unsupported MIDI files with clear error messages and suggested fixes
+* Provide fallback options for complex MIDI arrangements that don't convert cleanly
+* Implement responsive design that works across desktop, tablet, and mobile devices
+* Include contextual help tooltips explaining Strudel syntax for non-programmers
+* Offer undo/redo functionality for parameter adjustments and conversion iterations
+
+## 6. Narrative
+
+It's Tuesday morning, and Sarah is preparing for her team's creative brainstorm for the upcoming electronic music festival campaign. She has a folder of MIDI files from the headlining artists but needs to create something more interactive than traditional audio playback for their website launch.
+
+She opens the MIDI to Strudel converter, drags in the first track, and watches as the familiar piano roll visualization transforms into clean, readable Strudel code. Within minutes, she has working code that she can send to her development team. But more importantly, she can see how the musical patterns translate into algorithmic structures, giving her ideas for interactive elements where users can modify the beat, swap instruments, or create remixes in real-time.
+
+By the end of her morning coffee, Sarah has converted five tracks and is already sketching ideas for an interactive timeline where festival-goers can explore how each artist's style translates into code, creating personalized remixes they can share on social media. What started as static MIDI files has become the foundation for an entire interactive experience that bridges music and technology.
+
+## 7. Success metrics
+
+* **Conversion Quality**: 95% successful conversion rate for standard MIDI files (4/4 time, common instruments)
+* **User Engagement**: Average session duration of 15+ minutes with 3+ file conversions per session
+* **Code Functionality**: 90% of generated Strudel code executes without syntax errors
+* **User Adoption**: 1,000 active monthly users within 6 months of launch
+* **Community Growth**: 500 shared converted projects in community gallery within first year
+* **Business Impact**: 25% conversion rate from free to paid tier for advanced features
+
+## 8. Milestones & sequencing
+
+### Phase 1 (Months 1-2): MVP Launch
+* Core conversion engine supporting basic MIDI patterns
+* Simple web interface with upload, convert, and export functionality
+* Beta testing with 50 creative professionals and educators
+* Basic documentation and getting-started tutorials
+
+### Phase 2 (Months 3-4): Enhanced Usability
+* Improved conversion algorithms with better pattern recognition
+* Batch processing and project management features
+* Community gallery for sharing converted projects
+* Integration partnerships with creative agencies and music education platforms
+
+### Phase 3 (Months 5-6): Platform Expansion
+* API launch for developer ecosystem
+* Advanced customization options and professional features
+* Mobile app development and cross-platform synchronization
+* Monetization implementation with tiered pricing model 

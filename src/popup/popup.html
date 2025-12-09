@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIDI to Strudel Converter</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎹 MIDI to Strudel</h1>
+      <p class="subtitle">Convert your MIDI files into live-codeable Strudel patterns</p>
+    </header>
+
+    <!-- Upload Section -->
+    <section class="upload-section" id="uploadSection">
+      <div class="drop-zone" id="dropZone">
+        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+        </svg>
+        <p class="drop-text">Drop your MIDI file here</p>
+        <p class="drop-subtext">or</p>
+        <button class="btn-primary" id="browseBtn">Browse Files</button>
+        <input type="file" id="fileInput" accept=".mid,.midi" hidden>
+        <p class="file-info">Supports .mid and .midi files</p>
+      </div>
+    </section>
+
+    <!-- Processing Section -->
+    <section class="processing-section hidden" id="processingSection">
+      <div class="spinner"></div>
+      <p class="processing-text">Converting your MIDI file...</p>
+      <p class="processing-subtext" id="processingStatus">Analyzing tracks...</p>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section hidden" id="resultsSection">
+      <div class="file-info-bar">
+        <span class="file-name" id="fileName">song.mid</span>
+        <button class="btn-secondary btn-small" id="convertNewBtn">Convert New File</button>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="code">Strudel Code</button>
+        <button class="tab" data-tab="preview">Preview</button>
+        <button class="tab" data-tab="settings">Settings</button>
+      </div>
+
+      <!-- Code Tab -->
+      <div class="tab-content active" id="codeTab">
+        <div class="code-header">
+          <h3>Generated Strudel Code</h3>
+          <div class="code-actions">
+            <button class="btn-icon" id="copyBtn" title="Copy to clipboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+            <button class="btn-icon" id="downloadBtn" title="Download as file">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <pre class="code-output" id="codeOutput"><code>// Your Strudel code will appear here</code></pre>
+        <div class="copy-notification hidden" id="copyNotification">
+          ✓ Copied to clipboard!
+        </div>
+      </div>
+
+      <!-- Preview Tab -->
+      <div class="tab-content" id="previewTab">
+        <div class="preview-controls">
+          <button class="btn-primary" id="playBtn">
+            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Play Preview
+          </button>
+          <button class="btn-secondary hidden" id="stopBtn">
+            <svg class="stop-icon" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="6" width="12" height="12"></rect>
+            </svg>
+            Stop
+          </button>
+        </div>
+        <div class="preview-info">
+          <p><strong>Tempo:</strong> <span id="tempo">120</span> BPM</p>
+          <p><strong>Tracks:</strong> <span id="trackCount">0</span></p>
+          <p><strong>Duration:</strong> <span id="duration">0:00</span></p>
+        </div>
+        <div class="audio-visualizer" id="visualizer">
+          <div class="waveform">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Tab -->
+      <div class="tab-content" id="settingsTab">
+        <div class="settings-group">
+          <h4>Conversion Settings</h4>
+          <label>
+            <span>Quantization</span>
+            <select id="quantization">
+              <option value="16">16th notes</option>
+              <option value="8">8th notes</option>
+              <option value="4">Quarter notes</option>
+            </select>
+          </label>
+          <label>
+            <span>Pattern Length</span>
+            <select id="patternLength">
+              <option value="4">4 beats</option>
+              <option value="8">8 beats</option>
+              <option value="16">16 beats</option>
+            </select>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="preserveTempo" checked>
+            <span>Preserve original tempo</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="includeComments" checked>
+            <span>Include code comments</span>
+          </label>
+          <button class="btn-primary" id="reconvertBtn">Reconvert with Settings</button>
+        </div>
+      </div>
+
+      <div class="open-strudel">
+        <a href="https://strudel.cc" target="_blank" class="btn-link">
+          Open in Strudel.cc →
+        </a>
+      </div>
+    </section>
+
+    <!-- Error Section -->
+    <section class="error-section hidden" id="errorSection">
+      <div class="error-icon">⚠️</div>
+      <h3>Conversion Error</h3>
+      <p class="error-message" id="errorMessage">An error occurred while processing your MIDI file.</p>
+      <button class="btn-primary" id="tryAgainBtn">Try Again</button>
+    </section>
+
+    <footer>
+      <p class="footer-text">Made for creative coders and music enthusiasts</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

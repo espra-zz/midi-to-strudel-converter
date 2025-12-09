@@ -1,0 +1,28 @@
+{
+  "name": "midi-to-strudel-converter",
+  "version": "1.0.0",
+  "description": "Convert MIDI files to Strudel code - Chrome Extension",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "midi",
+    "strudel",
+    "music",
+    "converter",
+    "chrome-extension"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@tonejs/midi": "^2.0.28"
+  }
+}

@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Icon Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .icon-container { margin: 20px 0; }
+    canvas { border: 1px solid #ccc; margin: 10px; }
+    .instructions { background: #f0f0f0; padding: 15px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>MIDI to Strudel Icon Generator</h1>
+  <div class="instructions">
+    <h2>Instructions:</h2>
+    <ol>
+      <li>Open this HTML file in a browser</li>
+      <li>Right-click on each canvas below</li>
+      <li>Select "Save image as..."</li>
+      <li>Save with the corresponding filename (e.g., icon16.png, icon32.png, etc.)</li>
+      <li>Place the files in the src/icons/ directory</li>
+    </ol>
+  </div>
+
+  <div class="icon-container">
+    
+      <div>
+        <h3>16x16px</h3>
+        <canvas id="canvas16" width="16" height="16"></canvas>
+      </div>
+    
+      <div>
+        <h3>32x32px</h3>
+        <canvas id="canvas32" width="32" height="32"></canvas>
+      </div>
+    
+      <div>
+        <h3>48x48px</h3>
+        <canvas id="canvas48" width="48" height="48"></canvas>
+      </div>
+    
+      <div>
+        <h3>128x128px</h3>
+        <canvas id="canvas128" width="128" height="128"></canvas>
+      </div>
+    
+  </div>
+
+  <script>
+    const svg = `<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="128" height="128" rx="24" fill="#6366f1"/>
+
+  <!-- MIDI Keyboard -->
+  <rect x="20" y="50" width="88" height="48" rx="4" fill="white"/>
+
+  <!-- Black keys -->
+  <rect x="35" y="50" width="8" height="28" fill="#1f2937"/>
+  <rect x="50" y="50" width="8" height="28" fill="#1f2937"/>
+  <rect x="73" y="50" width="8" height="28" fill="#1f2937"/>
+  <rect x="88" y="50" width="8" height="28" fill="#1f2937"/>
+
+  <!-- Music note -->
+  <circle cx="95" cy="35" r="6" fill="#fbbf24"/>
+  <rect x="101" y="20" width="3" height="15" fill="#fbbf24"/>
+
+  <!-- Arrow/conversion symbol -->
+  <path d="M35 35 L50 35 L45 30 M50 35 L45 40" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Code brackets -->
+  <text x="64" y="35" font-family="monospace" font-size="20" font-weight="bold" fill="#fbbf24">{}</text>
+</svg>
+`;
+
+    
+      const canvas16 = document.getElementById('canvas16');
+      const ctx16 = canvas16.getContext('2d');
+      const img16 = new Image();
+      const blob16 = new Blob([svg], { type: 'image/svg+xml' });
+      const url16 = URL.createObjectURL(blob16);
+
+      img16.onload = function() {
+        ctx16.drawImage(img16, 0, 0, 16, 16);
+      };
+      img16.src = url16;
+    
+
+      const canvas32 = document.getElementById('canvas32');
+      const ctx32 = canvas32.getContext('2d');
+      const img32 = new Image();
+      const blob32 = new Blob([svg], { type: 'image/svg+xml' });
+      const url32 = URL.createObjectURL(blob32);
+
+      img32.onload = function() {
+        ctx32.drawImage(img32, 0, 0, 32, 32);
+      };
+      img32.src = url32;
+    
+
+      const canvas48 = document.getElementById('canvas48');
+      const ctx48 = canvas48.getContext('2d');
+      const img48 = new Image();
+      const blob48 = new Blob([svg], { type: 'image/svg+xml' });
+      const url48 = URL.createObjectURL(blob48);
+
+      img48.onload = function() {
+        ctx48.drawImage(img48, 0, 0, 48, 48);
+      };
+      img48.src = url48;
+    
+
+      const canvas128 = document.getElementById('canvas128');
+      const ctx128 = canvas128.getContext('2d');
+      const img128 = new Image();
+      const blob128 = new Blob([svg], { type: 'image/svg+xml' });
+      const url128 = URL.createObjectURL(blob128);
+
+      img128.onload = function() {
+        ctx128.drawImage(img128, 0, 0, 128, 128);
+      };
+      img128.src = url128;
+    
+  </script>
+</body>
+</html>

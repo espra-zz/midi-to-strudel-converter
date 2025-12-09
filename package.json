@@ -6,6 +6,9 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack --mode development --watch",
+    "verify": "bash scripts/verify-extension.sh",
+    "generate-icons": "python3 scripts/create-icons.py",
+    "rebuild": "npm run generate-icons && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

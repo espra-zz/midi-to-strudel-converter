@@ -11,14 +11,6 @@ module.exports = {
     filename: '[name]/[name].js',
     clean: true
   },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
-    ]
-  },
   plugins: [
     new CopyPlugin({
       patterns: [
@@ -29,6 +21,9 @@ module.exports = {
       ]
     })
   ],
-  mode: 'development',
-  devtool: 'cheap-module-source-map'
+  mode: 'production',
+  devtool: false,
+  optimization: {
+    minimize: true
+  }
 };

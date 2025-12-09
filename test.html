@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extension Test</title>
+    <link rel="stylesheet" href="dist/popup/popup.css">
+    <style>
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .test-info {
+            background: #f0f0f0;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            padding: 10px;
+            background: #ffeeee;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h1>Extension Test Seite</h1>
+        <p>Diese Seite lädt die Extension-UI zum Testen außerhalb von Chrome.</p>
+        <p><strong>Fehler werden in der Browser-Konsole (F12) angezeigt.</strong></p>
+    </div>
+
+    <div id="test-root"></div>
+
+    <!-- Load the popup HTML content -->
+    <script>
+        // Simulate Chrome storage API
+        if (!window.chrome) {
+            window.chrome = {
+                storage: {
+                    local: {
+                        get: function(keys, callback) {
+                            console.log('[TEST] chrome.storage.local.get', keys);
+                            callback({});
+                        },
+                        set: function(items, callback) {
+                            console.log('[TEST] chrome.storage.local.set', items);
+                            if (callback) callback();
+                        }
+                    }
+                }
+            };
+        }
+
+        // Load popup HTML
+        fetch('dist/popup/popup.html')
+            .then(response => response.text())
+            .then(html => {
+                // Extract body content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const body = doc.body.innerHTML;
+                document.getElementById('test-root').innerHTML = body;
+
+                // Load the script
+                const script = document.createElement('script');
+                script.src = 'dist/popup/popup.js';
+                script.onerror = function(err) {
+                    console.error('[TEST] Script load error:', err);
+                    document.body.innerHTML += '<div class="error">Script konnte nicht geladen werden! Prüfen Sie die Konsole.</div>';
+                };
+                script.onload = function() {
+                    console.log('[TEST] Script loaded successfully');
+                };
+                document.body.appendChild(script);
+            })
+            .catch(err => {
+                console.error('[TEST] Error loading popup HTML:', err);
+                document.body.innerHTML += '<div class="error">Fehler beim Laden: ' + err.message + '</div>';
+            });
+
+        // Log all errors
+        window.addEventListener('error', function(e) {
+            console.error('[TEST] Runtime error:', e.error);
+            document.body.innerHTML += '<div class="error"><strong>Fehler:</strong> ' + e.message + '<br><pre>' + (e.error ? e.error.stack : '') + '</pre></div>';
+        });
+
+        // Log unhandled promise rejections
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('[TEST] Unhandled promise rejection:', e.reason);
+            document.body.innerHTML += '<div class="error"><strong>Promise Fehler:</strong> ' + e.reason + '</div>';
+        });
+    </script>
+</body>
+</html>
